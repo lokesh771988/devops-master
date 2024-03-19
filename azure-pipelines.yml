@@ -24,6 +24,14 @@ jobs:
   steps:
   - script: echo Hello, world!
     displayName: 'Run a Job 3 script'
+- job: Job4
+  dependsOn: 
+  - Job1
+  - Job2
+  - Job3
+  steps:
+  - script: echo Hello, world!
+    displayName: 'Run a Job 4 script'
 #- script: |
 #    echo Add other tasks to build, test, and deploy your project.
 #    echo See https://aka.ms/yaml
