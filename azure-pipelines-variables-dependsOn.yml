@@ -14,28 +14,34 @@ stages:
   jobs: 
   - job: FirstJob
     steps:
-    - bash: echo $(PIPELINEVARIABLE) FirstJob
-- stage: DevDeploy
-  dependsOn: Build
-  variables:
-    environment: Dev
-  jobs: 
-  - job: DevDeploy
-    steps:
-    - bash: echo $(PIPELINEVARIABLE) DevDeploy
-- stage: QA
-  dependsOn: Build
-  variables:
-    environment: QA
-  jobs: 
-  - job: QADeploye
-    steps:
-    - bash: echo $(PIPELINEVARIABLE) QADeploye
-- stage: UAT
-  dependsOn: Build
-  variables:
-    environment: UAT
-  jobs: 
-  - job: UATDeploye
-    steps:
-    - bash: echo $(PIPELINEVARIABLE) UATDeploye
+    - bash: echo $(PIPELINEVARIABLE)
+    - bash: echo $(Build.BuildNumber)
+    - bash: echo $(Build.BuildId)
+    - bash: echo $(Build.SourceBranch)
+    - bash: ls -R $(System.DefaultWorkingDirectory)
+    - bash: echo $(Build.ArtifactStagingDirectory)
+
+# - stage: DevDeploy
+#   dependsOn: Build
+#   variables:
+#     environment: Dev
+#   jobs: 
+#   - job: DevDeploy
+#     steps:
+#     - bash: echo $(PIPELINEVARIABLE) DevDeploy
+# - stage: QA
+#   dependsOn: Build
+#   variables:
+#     environment: QA
+#   jobs: 
+#   - job: QADeploye
+#     steps:
+#     - bash: echo $(PIPELINEVARIABLE) QADeploye
+# - stage: UAT
+#   dependsOn: Build
+#   variables:
+#     environment: UAT
+#   jobs: 
+#   - job: UATDeploye
+#     steps:
+#     - bash: echo $(PIPELINEVARIABLE) UATDeploye
