@@ -19,15 +19,23 @@ stages:
   dependsOn: Build
   variables:
     environment: Dev
-    -bash: echo $(PIPELINEVARIABLE) Dev Deploy
+  jobs: 
+  - job: DevDeploy
+    steps:
+    - bash: echo $(PIPELINEVARIABLE) DevDeploy
 - stage: QA
   dependsOn: Build
   variables:
     environment: QA
-    -bash: echo $(PIPELINEVARIABLE) QA Deploy
+  jobs: 
+  - job: QADeploye
+    steps:
+    - bash: echo $(PIPELINEVARIABLE) QADeploye
 - stage: UAT
   dependsOn: Build
   variables:
     environment: UAT
-    -bash: echo $(PIPELINEVARIABLE) UAT Deploy
-
+  jobs: 
+  - job: UATDeploye
+    steps:
+    - bash: echo $(PIPELINEVARIABLE) UATDeploye
