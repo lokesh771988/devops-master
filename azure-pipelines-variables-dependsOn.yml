@@ -15,11 +15,18 @@ stages:
   - job: FirstJob
     steps:
     - bash: echo $(PIPELINEVARIABLE)
-    - bash: echo $(Build.BuildNumber)
-    - bash: echo $(Build.BuildId)
-    - bash: echo $(Build.SourceBranch)
+    #- bash: echo $(Build.BuildNumber)
+    #- bash: echo $(Build.BuildId)
+    #- bash: echo $(Build.SourceBranch)
     - bash: ls -R $(System.DefaultWorkingDirectory)
     - bash: echo $(Build.ArtifactStagingDirectory)
+    - task: CopyFiles@2
+      inputs:
+        SourceFolder: '$(System.DefaultWorkingDirectory)'
+        Contents: |
+          **/*.paml
+          **/*.tf
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 # - stage: DevDeploy
 #   dependsOn: Build
